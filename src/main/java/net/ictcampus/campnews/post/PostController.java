@@ -16,9 +16,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//Swagger
 @Tag(name = "PostController", description = "Processes /posts endpoint requests")
+//Spring Web
 @RestController
+//Spring Web
 @RequestMapping("/posts")
 public class PostController {
 
@@ -27,12 +29,15 @@ public class PostController {
     public PostController(PostService postService) {
         this.postService = postService;
     }
-
+    //Swagger
     @Operation(summary = "Creates an new Post", description = "Creates a new post details based on provided information", security = {@SecurityRequirement(name = "JWT-Token")})
+    //Swagger
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Successfully created post", content = {@Content(mediaType = "application/json")}),
     })
+    //Spring Security
     @PreAuthorize("@authz.canAccessPost(authentication, #id)")
+    //Spring Web // Valid = Jakarta //Requestbody, ResponseEntity = Spring Web
     @PostMapping
     public ResponseEntity<Void> createPost(@Valid @RequestBody CreatePostDTO post) {
         postService.createPost(post);

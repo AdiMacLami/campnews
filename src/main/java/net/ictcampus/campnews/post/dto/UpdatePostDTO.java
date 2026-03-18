@@ -8,11 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Set;
-
+//Lombok
 @Getter
 @Setter
 public class UpdatePostDTO {
-
+    //Jakarta/Validation
     @NotBlank(message = "Title is required")
     private String title;
 

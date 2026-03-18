@@ -14,33 +14,39 @@ import net.ictcampus.campnews.user.User;
 
 import java.util.List;
 import java.util.Set;
-
+//Jakarta, markiert Klasse als Datenbank-Entity
 @Entity
+//Jakarta, gibt Tabellennamen der Datenbank
 @Table(name = "`post`")
+//Lombok, automatische setter und getter
 @Getter
 @Setter
+//Lombok, automatisch parameterloser Konstruktor
 @NoArgsConstructor
+//Lombok, Setter geben das Objekt zurück
 @Accessors(chain = true)
 public class Post {
-
+    //Jakarta/Hibernate Primärschlüssel
     @Id
+    //Jakarta/Hibernate generiert PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    //Jakarta nicht leer
     @NotBlank(message = "Title is required")
     private String title;
-
     @NotBlank(message = "Text is required")
     private String text;
-
+    //Jakarta/Hibernate m:1
     @ManyToOne(fetch = FetchType.LAZY)
+    //Jakarta/Hibernate Definiert Fremdschlüssel
     @JoinColumn(name = "user_id")
     private User user;
-
+    //Jakarta/Hibernate 1:m
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Comment> comments;
-
+    //Jakarta/Hibernate m:m
     @ManyToMany(fetch = FetchType.LAZY)
+    //Jakarta/Hibernate Zwischentabelle
     @JoinTable(
             name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),

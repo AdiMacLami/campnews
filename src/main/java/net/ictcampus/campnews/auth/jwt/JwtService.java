@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // Tokeninformationen abpacken und generieren
+    // Tokeninformationen abpacken und generieren<
     public String generateToken(UserDetails userDetails) {
         User user = (User) userDetails;
 
